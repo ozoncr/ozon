@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OZON – Entrena. Genera. Carga.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Poppins, sans-serif; color: #0A3C30; background: #fff; }
+
+    /* NAV */
+    nav {
+      background: #0A3C30;
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav img { height: 55px; }
+    nav ul { list-style: none; display: flex; gap: 30px; }
+    nav ul a {
+      color: #73E6CB;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0A3C30 0%, #00674F 60%, #3EBB9E 100%);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero-inner { max-width: 700px; }
+    .hero img { width: 240px; margin-bottom: 30px; }
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 58px; font-weight: 900;
+      color: #fff; line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .hero .slogan {
+      color: #73E6CB;
+      font-size: 18px; font-weight: 600;
+      letter-spacing: 0.15em; margin-bottom: 24px;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.82);
+      font-size: 16px; line-height: 1.8;
+      margin-bottom: 36px;
+    }
+    .btn {
+      display: inline-block;
+      background: #3EBB9E;
+      color: #fff;
+      padding: 14px 36px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn:hover { background: #73E6CB; color: #0A3C30; transform: translateY(-2px); }
+
+    /* STATS */
+    .stats {
+      background: #00674F;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .stat {
+      padding: 28px 50px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: "Playfair Display", serif;
+      font-size: 34px; font-weight: 900;
+      color: #fff;
+    }
+    .stat-lbl { color: #73E6CB; font-size: 12px; letter-spacing: 0.1em; margin-top: 4px; }
+
+    /* SECTIONS COMMON */
+    section { padding: 80px 40px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .tag {
+      color: #00674F; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 38px; color: #0A3C30;
+      margin-bottom: 16px; line-height: 1.15;
+    }
+    .line {
+      width: 50px; height: 3px;
+      background: linear-gradient(90deg, #3EBB9E, #73E6CB);
+      margin-bottom: 30px;
+    }
+
+    /* PRODUCT */
+    .product { background: #f4fbf9; }
+    .two-col {
+      display: flex; gap: 60px; align-items: center; flex-wrap: wrap;
+    }
+    .two-col .text { flex: 1; min-width: 280px; }
+    .two-col .text p { color: #2a4a40; font-size: 16px; line-height: 1.85; margin-bottom: 14px; }
+    .machines { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 16px; }
+    .machine-card {
+      background: #0A3C30;
+      padding: 18px 22px;
+      display: flex; align-items: center; gap: 16px;
+      border-radius: 4px;
+    }
+    .machine-card .icon {
+      width: 46px; height: 46px;
+      background: #3EBB9E;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .machine-card .info { flex: 1; }
+    .machine-card .info strong { color: #fff; font-size: 15px; display: block; margin-bottom: 4px; }
+    .machine-card .info span { color: #73E6CB; font-size: 12px; }
+    .machine-card .watts {
+      color: #73E6CB; font-weight: 700; font-size: 14px;
+    }
+
+    /* MISSION VISION */
+    .mv { background: #fff; }
+    .mv-grid { display: flex; gap: 30px; flex-wrap: wrap; margin-top: 10px; }
+    .mv-card {
+      flex: 1; min-width: 280px;
+      border-top: 4px solid #3EBB9E;
+      background: #f4fbf9;
+      padding: 30px;
+      border-radius: 0 0 4px 4px;
+    }
+    .mv-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px; color: #0A3C30; margin-bottom: 14px;
+    }
+    .mv-card p { color: #3a5a50; font-size: 15px; line-height: 1.85; }
+
+    /* TEAM */
+    .team { background: #0A3C30; }
+    .team .tag { color: #73E6CB; }
+    .team h2 { color: #fff; }
+    .team-grid { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 30px; }
+    .team-card {
+      flex: 1; min-width: 200px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(115,230,203,0.25);
+      padding: 28px;
+      border-radius: 4px;
+      text-align: center;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .team-card:hover { background: rgba(62,187,158,0.15); transform: translateY(-4px); }
+    .avatar {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: linear-gradient(135deg, #00674F, #3EBB9E);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Playfair Display", serif;
+      font-size: 26px; font-weight: 900; color: #fff;
+      margin: 0 auto 16px;
+    }
+    .team-card h4 { color: #fff; font-size: 16px; margin-bottom: 6px; }
+    .team-card span { color: #73E6CB; font-size: 12px; letter-spacing: 0.08em; }
+
+    /* CONTACT */
+    .contact { background: #f4fbf9; }
+    .contact-grid { display: flex; gap: 60px; flex-wrap: wrap; margin-top: 10px; }
+    .contact-info { flex: 1; min-width: 260px; }
+    .contact-info h3 { font-family: "Playfair Display", serif; font-size: 22px; margin-bottom: 12px; }
+    .contact-info p { color: #3a5a50; line-height: 1.8; margin-bottom: 24px; }
+    .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-btn {
+      background: #0A3C30; color: #73E6CB;
+      padding: 10px 20px; text-decoration: none;
+      font-size: 13px; font-weight: 600;
+      border-radius: 4px; transition: background 0.2s;
+    }
+    .social-btn:hover { background: #00674F; color: #fff; }
+    .contact-form { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 16px; }
+    label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: #00674F; display: block; margin-bottom: 6px; }
+    input, textarea {
+      width: 100%;
+      border: 1.5px solid #c8e8e0;
+      padding: 12px 14px;
+      font-family: Poppins, sans-serif;
+      font-size: 14px;
+      outline: none;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus { border-color: #3EBB9E; }
+    textarea { resize: vertical; min-height: 120px; }
+    button {
+      background: #00674F; color: #fff;
+      border: none; padding: 14px;
+      font-family: Poppins, sans-serif;
+      font-weight: 700; font-size: 14px;
+      letter-spacing: 0.08em; cursor: pointer;
+      border-radius: 4px; transition: background 0.2s;
+    }
+    button:hover { background: #0A3C30; }
+
+    /* FOOTER */
+    footer {
+      background: #060f0d;
+      padding: 30px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer img { height: 40px; }
+    footer p { color: rgba(115,230,203,0.55); font-size: 13px; letter-spacing: 0.1em; }
+    .footer-social { display: flex; gap: 20px; }
+    .footer-social a { color: rgba(115,230,203,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-social a:hover { color: #73E6CB; }
+
+    @media(max-width:700px){
+      nav ul { display: none; }
+      .hero h1 { font-size: 38px; }
+      .stat { padding: 22px 24px; }
+      section { padding: 60px 20px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    .hero img.logo{
+  width: 420px;
+  height: auto;
+  margin-bottom: 30px;
+}
+  </style>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("TU_PUBLIC_KEY");
+
+document
+  .getElementById("contact-form")
+  .addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    emailjs.send("TU_SERVICE_ID","TU_TEMPLATE_ID",{
+      from_name: document.getElementById("name").value,
+      from_email: document.getElementById("email").value,
+      message: document.getElementById("message").value
+    })
+    .then(function(){
+      alert("Mensaje enviado");
+    })
+    .catch(function(error){
+      alert("Error al enviar");
+      console.log(error);
+    });
+
+});
+</script>
+
+<body>
+
+
+<nav>
+  <img src="ozonlogo.png">
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#producto">Producto</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <img class="logo" src="ozonlogo.png">
+    <h1>Entrena.<br>Genera.<br>Carga.</h1>
+    <p class="slogan">ENTRENA · GENERA · CARGA</p>
+    <p>Transformamos la energía humana en electricidad limpia y renovable. Cada pedalada y cada paso se convierte en energía para el planeta.</p>
+    <a href="#producto" class="btn">Conoce nuestro producto</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Energía renovable</div></div>
+  <div class="stat"><div class="stat-num">0</div><div class="stat-lbl">Emisiones de CO₂</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-lbl">Potencial humano</div></div>
+</div>
+
+<!-- PRODUCTO -->
+<section class="product" id="producto">
+  <div class="container">
+    <div class="two-col">
+      <div class="text">
+        <p class="tag">Nuestro Producto</p>
+        <h2>Máquina que genera el futuro</h2>
+        <div class="line"></div>
+        <p>Desarrollamos una máquina de ejercicio sostenible capaz de transformar la energía generada por el movimiento humano en energía eléctrica limpia y renovable.</p>
+        <p>Esta energía alimenta componentes eléctricos del propio gimnasio, promoviendo el ejercicio, la innovación y el cuidado del medio ambiente.</p>
+      </div>
+      <div class="machines">
+        <div class="machine-card">
+          <div class="icon">🚶</div>
+          <div class="info"><strong>Caminadora Generadora</strong><span>Genera energía mientras caminas o corres</span></div>
+          <div class="watts">~ 10-50V</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISIÓN Y VISIÓN -->
+<section class="mv" id="nosotros">
+  <div class="container">
+    <p class="tag">Nuestra Identidad</p>
+    <h2>Misión & Visión</h2>
+    <div class="line"></div>
+    <div class="mv-grid">
+      <div class="mv-card">
+        <h3> Misión</h3>
+        <p>Brindar una experiencia innovadora de ejercicio y sostenibilidad mediante la transformación de la energía generada por caminadoras, bicicletas estacionarias, elípticas y otras máquinas de gimnasio en energía eléctrica limpia y renovable. Promovemos un estilo de vida saludable, la conciencia ambiental y el uso responsable de los recursos energéticos.</p>
+      </div>
+      <div class="mv-card">
+        <h3> Visión</h3>
+        <p>Ser una empresa líder y pionera en tecnología sostenible aplicada al ejercicio físico. Aspiramos a revolucionar la manera en que las personas perciben los gimnasios, transformándolos en espacios que contribuyen activamente al cuidado del medio ambiente y expandir esta tecnología hacia hogares y negocios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="team" id="equipo">
+  <div class="container">
+    <p class="tag">MIEMBROS</p>
+    <h2>Nuestro Equipo</h2>
+    <div class="line"></div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">JP</div>
+        <h4>Juan Pablo C.</h4>
+        <span>Ciberseguridad</span>
+      </div>
+      <div class="team-card">
+        <div class="avatar">V</div>
+        <h4>Valeria S.</h4>
+        <span>Ciberseguridad</span>
+      </div>
+      <div class="team-card">
+        <div class="avatar">D</div>
+        <h4>Dariana M.</h4>
+        <span>Ciberseguridad</span>
+      </div>
+      <div class="team-card">
+        <div class="avatar">A</div>
+        <h4>Adrián R.</h4>
+        <span>Electrónica Industrial</span>
+      </div>
+      <div class="team-card">
+        <div class="avatar">S</div>
+        <h4>Sebástian P.</h4>
+        <span>Electrónica Industrial</span>
+      </div>
+      <div class="team-card">
+        <div class="avatar">JI</div>
+        <h4>José Ignacio B.</h4>
+        <span>Electrónica Industrial</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <p class="tag">Contáctanos</p>
+    <h2>Hablemos del futuro</h2>
+    <div class="line"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>¿Quieres saber más sobre Ozon?</h3>
+        <p>Estamos revolucionando la manera en que los gimnasios producen y consumen energía. Escríbenos y súmate al movimiento sostenible.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/ozon.cr_?igsh=MTlqbzAwdmx6ZDl5dg%3D%3D&utm_source=qr" class="social-btn">📸 Instagram</a>
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form"></form>
+        <div><label>Nombre</label><input type="text" id="name" placeholder="Tu nombre completo"></div>
+        <div><label>Correo electrónico</label><input type="email" id="email" placeholder="tu@correo.com"></div>
+        <div><label>Mensaje</label><textarea id="message" placeholder="Cuéntanos tu idea o pregunta…"></textarea></div>
+        <button type="submit">Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="ozonlogo.png">
+  <p>ENTRENA · GENERA · CARGA</p>
+  <div class="footer-social">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+  </div>
+</footer>
+
+</body>
+</html>
